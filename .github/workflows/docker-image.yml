@@ -25,6 +25,6 @@ jobs:
     - name: Test with pytest
       working-directory: .
       run : |
-        ls
+        pip install pytest
         pytest test_home_route.py
       
