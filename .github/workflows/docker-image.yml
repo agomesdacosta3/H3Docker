@@ -1,4 +1,4 @@
-name: Docker Image CI
+name: Test Python App
 
 on: [push, pull_request]
 
@@ -23,7 +23,8 @@ jobs:
         pip install -r requirements.txt
         
     - name: Test with pytest
+      working-directory: .
       run : |
-        pip install pytest
+        ls
         pytest test_home_route.py
       
