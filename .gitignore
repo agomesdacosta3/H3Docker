@@ -1,0 +1,5 @@
+/database
+/node_modules
+./test.py
+package.json
+package-lock.json
