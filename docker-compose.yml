@@ -1,12 +1,15 @@
-version: "3.3"
+version: "3.9"
+
 services:
+
   mysql_db:
     container_name: "mysql_db"
     image: mysql:5.7
+    networks:
+      - reseau
+    restart: always
     environment:
-      MYSQL_HOST: "localhost"
-      MYSQL_USER: "auser"
-      MYSQL_PASSWORD: "pass"
+      MYSQL_ROOT_PASSWORD: "pass"
       MYSQL_DATABASE: "dbcounter"
     ports:
       - "3306:3306"
@@ -14,11 +17,10 @@ services:
       - "3306"
     volumes:
       - ./database/:/var/lib/mysql
-    networks:
-      - reseau
-    restart: always
     
   web:
+    depends_on:
+      - mysql_db
     build:
       context: .
       dockerfile : Dockerfile
@@ -33,4 +35,3 @@ services:
 
 networks:
   reseau:
-    driver: bridge
