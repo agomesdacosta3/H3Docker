@@ -3,7 +3,7 @@ FROM ubuntu:latest
 WORKDIR /code
 
 ENV FLASK_APP=app.py
-ENV FLASK_RUN_HOST=127.0.0.1
+ENV FLASK_RUN_HOST=0.0.0.0
 
 RUN apt-get update
 RUN apt-get install python3 python3-pip -y
@@ -16,6 +16,6 @@ RUN pip install mysqlclient
 
 EXPOSE 5000
 
-# COPY ./ ./
+COPY ./ ./
 
-# CMD ["flask", "run"]
+CMD ["flask", "run"]
